@@ -28,21 +28,12 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // the login with facebook route
-    .state('login-facebook', {
-      url: '/login-facebook',
-      templateUrl: 'templates/login-facebook.html',
-      data: {
-        login: true
-      }
-    })
-
     // the login route
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
       data: {
-        public: true
+        login: true
       }
     })
 
