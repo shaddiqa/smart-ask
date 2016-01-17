@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SeminarDetailCtrl', function($scope, $stateParams, Seminars) {
-  $scope.seminars = Seminars.get($stateParams.seminarId);
+  $scope.seminar = Seminars.get($stateParams.seminarId);
 })
 
 .controller('AccountCtrl', function($scope) {

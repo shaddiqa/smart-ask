@@ -4,7 +4,15 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view title="{{seminars.name}}">
+<ion-view title="{{seminar.name}}">
   <ion-content has-header="true" padding="true">
+    <div class="card">
+      <div class="item item-divider">{{seminar.caption}}</div>
+      <div class="item item-body">{{seminar.description}}</div>
+      <div class="item item-body"><b>Speaker: </b>{{seminar.speaker}}</div>
+      <div class="item item-body"><b>Time: </b>{{seminar.date}} {{seminar.time}}</div>
+      <div class="item item-body"><b>Location: </b>{{seminar.city}}, {{seminar.location}}</div>
+    </div>
+    <button class="button button-block button-positive">Book now {{seminar.currency}} {{seminar.fee}}</button>
   </ion-content>
 </ion-view>

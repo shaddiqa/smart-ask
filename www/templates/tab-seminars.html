@@ -2,7 +2,9 @@
   <ion-content class="has-header">
     <ion-list>
       <ion-item ng-repeat="seminar in seminars" type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
-        {{seminar.name}}
+        <span>{{seminar.name}}</span>
+        <br/>
+        <p>{{seminar.caption}}</p>
       </ion-item>
     </ion-list>
   </ion-content>
