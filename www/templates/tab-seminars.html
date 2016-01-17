@@ -1,0 +1,9 @@
+<ion-view title="Seminars">
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="seminar in seminars" type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
+        {{seminar.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

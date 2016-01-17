@@ -74,21 +74,21 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
       }
     })
 
-    .state('tab.friends', {
-      url: '/friends',
+    .state('tab.seminars', {
+      url: '/seminars',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+        'tab-seminars': {
+          templateUrl: 'templates/tab-seminars.html',
+          controller: 'SeminarsCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    .state('tab.seminar-detail', {
+      url: '/seminar/:seminarId',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-seminars': {
+          templateUrl: 'templates/seminar-detail.html',
+          controller: 'SeminarDetailCtrl'
         }
       }
     })
