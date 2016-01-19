@@ -1,6 +1,12 @@
 {
-  "name": "myApp2",
+  "name": "smartAsk",
   "email": "",
   "app_id": "e411d9a6",
-  "package_name": ""
+  "package_name": "",
+  "proxies": [
+    {
+      "path": "/proxy",
+      "proxyUrl": "https://api.sandbox.veritrans.co.id"
+    }
+  ]
 }

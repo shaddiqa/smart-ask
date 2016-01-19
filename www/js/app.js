@@ -7,6 +7,13 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.services'])
 
+// .constant('VeritransEndpoint', {
+//   url: 'http://localhost:8100/proxy'
+// })
+.constant('VeritransEndpoint', {
+  url: 'https://api.sandbox.veritrans.co.id'
+})
+
 .run(function($ionicPlatform, user) {
   // Initiate the user service with your UserApp App Id
   // https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
