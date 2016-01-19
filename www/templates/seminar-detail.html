@@ -15,10 +15,10 @@
     </div>
     <div class="row-bottom">
       <div class="col">
-        <button class="button button-block button-positive" ng-hide="pay.success" ng-click="pay()">Book now {{seminar.currency}} {{seminar.fee}}</button>
+        <button class="button button-block button-positive" ng-hide="seminar.booking_code" ng-click="pay()">Book now {{seminar.currency}} {{seminar.fee}}</button>
       </div>
-      <div class="col bar bar-block bar-balanced" ng-show="pay.success">
-        <div class="title">{{ pay.message }}</div>
+      <div class="col bar bar-block bar-balanced" ng-show="seminar.booking_code">
+        <div class="title">Booking code: {{ seminar.booking_code }}</div>
       </div>
       <div class="col bar bar-block bar-assertive" ng-show="error">
         <div class="title">{{ error.message }}</div>

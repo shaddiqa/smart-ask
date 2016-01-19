@@ -1,11 +1,30 @@
 <ion-view title="Seminars">
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="seminar in seminars" type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
-        <span>{{seminar.name}}</span>
-        <br/>
-        <p>{{seminar.caption}}</p>
-      </ion-item>
+      <div class="item item-divider">
+        Available Seminars
+      </div>
+      <div ng-repeat="seminar in seminars">
+        <div ng-if="!seminar.booking_code">
+          <ion-item type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
+            <span>{{seminar.name}}</span>
+            <br/>
+            <p>{{seminar.caption}}</p>
+          </ion-item>
+        </div>
+      </div>
+      <div class="item item-divider">
+        Booked Seminars
+      </div>
+      <div ng-repeat="seminar in seminars">
+        <div ng-if="seminar.booking_code">
+          <ion-item type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
+            <span>{{seminar.name}}</span>
+            <br/>
+            <p>{{seminar.caption}}</p>
+          </ion-item>
+        </div>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>

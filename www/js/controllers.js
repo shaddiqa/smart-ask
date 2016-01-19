@@ -7,69 +7,33 @@ angular.module('starter.controllers', [])
   $scope.seminars = Seminars.all();
 })
 
-.controller('SeminarDetailCtrl', function($scope, $stateParams, Seminars, $http, $window, VeritransEndpoint, $timeout) {
+.controller('SeminarDetailCtrl', function($scope, $stateParams, Seminars, $window, VeritransService, QueryStringParser, $timeout) {
   $scope.seminar = Seminars.get($stateParams.seminarId);
 
   $scope.pay = function() {
-    var data = {
-      "payment_type": "vtweb",
-      "transaction_details": {
-        "order_id": String(new Date().getTime()),
-        "gross_amount": $scope.seminar.fee,
-        "currency": $scope.seminar.currency
-      },
-      "vtweb": {
-        "enabled_payments": [ "credit_card", "mandiri_clickpay" ]
-      }
-    }
+    VeritransService.charge($scope.seminar, function(resp) {
+      var browser = $window.open(resp.data.redirect_url, '_blank');
 
-    var config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Basic NjJiMTVhN2QtZTVmOC00YjNjLTllYWItY2E4MjdjYTM3ZjU1Og=='
-      }
-    }
+      browser.addEventListener('loadstart', function (event) {
+        var url = event.url;
 
-    $http.post(VeritransEndpoint.url + '/v2/charge', data, config).then(function(resp) {
-        var browser = $window.open(resp.data.redirect_url, '_blank');
+        if (url.match(/example.com/)) {
+          browser.close();
 
-        browser.addEventListener('loadstart', function (event) {
-          var url = event.url;
+          var params = QueryStringParser.parse(url);
 
-          if (url.match(/example.com/)) {
-            var queryStringToJSON = function(url_string) {
-              var pairs = url_string.split("?")[1].split('&');
-
-              var result = {};
-              pairs.forEach(function(pair) {
-                pair = pair.split('=');
-                result[pair[0]] = decodeURIComponent(pair[1] || '');
-              });
-
-              return JSON.parse(JSON.stringify(result));
+          $timeout(function() {
+            if (params.status_code == '200') {
+              $scope.seminar.booking_code = params.order_id;
             }
-
-            var query_string = queryStringToJSON(url);
-
-            $timeout(function() {
-              if (query_string.status_code == '200') {
-                $scope.pay = {
-                  success: true,
-                  message: "Booking code: " + query_string.order_id
-                };
-              }
-            });
-
-            browser.close();
-          }
-
-        });
-      }, function(err) {
-        $scope.error = {
-          message: err.status
-        };
-      })
+          });
+        }
+      });
+    }, function(err) {
+      $scope.error = {
+        message: err.status
+      };
+    });
   }
 })
 
