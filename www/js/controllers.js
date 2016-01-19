@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
 
   $scope.pay = function() {
     VeritransService.charge($scope.seminar, function(resp) {
-      var browser = $window.open(resp.data.redirect_url, '_blank');
+      var browser = $window.open(resp.data.redirect_url, '_blank', 'location=no');
 
       browser.addEventListener('loadstart', function (event) {
         var url = event.url;

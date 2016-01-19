@@ -14,9 +14,9 @@
       <div class="item item-body"><b>Location: </b>{{seminar.city}}, {{seminar.location}}</div>
     </div>
     <div class="row-bottom">
-      <div class="col">
-        <button class="button button-block button-positive" ng-hide="seminar.booking_code" ng-click="pay()">Book now {{seminar.currency}} {{seminar.fee}}</button>
-      </div>
+      <button class="button button-block button-positive" ng-hide="seminar.booking_code" ng-click="pay()">
+        <div class="col">Book now {{seminar.currency}} {{seminar.fee}}</div>
+      </button>
       <div class="col bar bar-block bar-balanced" ng-show="seminar.booking_code">
         <div class="title">Booking code: {{ seminar.booking_code }}</div>
       </div>
