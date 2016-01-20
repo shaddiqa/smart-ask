@@ -1,0 +1,32 @@
+<ion-view title="Payment">
+  <ion-content class="center">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <span class="input-label">Card Number</span>
+        <input type="text" placeholder="4811111111111114" ng-model="card.number">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Card Expiry Month</span>
+        <select ng-model="card.exp_month" ng-init="card.exp_month = months[0]" ng-options="month for month in months">
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Card Expiry Year</span>
+        <input type="text" placeholder="2099" ng-model="card.exp_year">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">CVV</span>
+        <input type="password" placeholder="123" ng-model="card.cvv">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="pay()">
+        <span ng-show="!loading">Pay</span>
+        <i ng-show="loading" class="ion-loading-b"></i>
+      </button>
+    </div>
+  </ion-content>
+</ion-view>
+<div class="bar bar-footer bar-assertive" ng-show="error">
+  <div class="title">{{ error.message }}</div>
+</div>

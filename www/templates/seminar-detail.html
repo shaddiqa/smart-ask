@@ -14,10 +14,12 @@
       <div class="item item-body"><b>Location: </b>{{seminar.city}}, {{seminar.location}}</div>
     </div>
     <div class="row-bottom">
-      <button class="button button-block button-positive" ng-hide="seminar.booking_code" ng-click="pay()">
-        <div class="col">Book now {{seminar.currency}} {{seminar.fee}}</div>
-      </button>
-      <div class="col bar bar-block bar-balanced" ng-show="seminar.booking_code">
+      <a type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}/pay">
+        <button class="button button-block button-positive" ng-hide="seminar.paid">
+          <div class="col">Book now {{seminar.currency}} {{seminar.fee}}</div>
+        </button>
+      </a>
+      <div class="col bar bar-block bar-balanced" ng-show="seminar.paid">
         <div class="title">Booking code: {{ seminar.booking_code }}</div>
       </div>
       <div class="col bar bar-block bar-assertive" ng-show="error">

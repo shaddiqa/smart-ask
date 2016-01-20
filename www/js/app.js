@@ -7,11 +7,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.services'])
 
-// .constant('VeritransEndpoint', {
-//   url: 'http://localhost:8100/proxy'
-// })
 .constant('VeritransEndpoint', {
-  url: 'https://api.sandbox.veritrans.co.id'
+  url: 'https://api.sandbox.veritrans.co.id',
+  client_key: '156814b4-bf20-4e2b-8b87-073112fafb9a',
+  charge_proxy_url: 'https://smart-ask-server.herokuapp.com'
 })
 
 .run(function($ionicPlatform, user) {
@@ -87,6 +86,16 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
         'tab-seminars': {
           templateUrl: 'templates/seminar-detail.html',
           controller: 'SeminarDetailCtrl'
+        }
+      }
+    })
+
+    .state('tab.payment', {
+      url: '/seminar/:seminarId/pay',
+      views: {
+        'tab-seminars': {
+          templateUrl: 'templates/payment.html',
+          controller: 'PaymentCtrl'
         }
       }
     })

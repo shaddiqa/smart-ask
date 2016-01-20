@@ -8,10 +8,10 @@ angular.module('starter.services', [])
 
   // Some fake testing data
   var seminars = [
-    { id: 0, name: 'Seminar 1', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 1', date: '2016-01-01', time: '10:00:00', booking_code: undefined },
-    { id: 1, name: 'Seminar 2', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 2', date: '2016-01-01', time: '10:00:00', booking_code: undefined },
-    { id: 2, name: 'Seminar 3', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 3', date: '2016-01-01', time: '10:00:00', booking_code: undefined },
-    { id: 3, name: 'Seminar 4', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 4', date: '2016-01-01', time: '10:00:00', booking_code: undefined }
+    { id: 0, name: 'Seminar 1', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 1', date: '2016-01-01', time: '10:00:00', booking_code: undefined, paid: false },
+    { id: 1, name: 'Seminar 2', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 2', date: '2016-01-01', time: '10:00:00', booking_code: undefined, paid: false },
+    { id: 2, name: 'Seminar 3', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 3', date: '2016-01-01', time: '10:00:00', booking_code: undefined, paid: false },
+    { id: 3, name: 'Seminar 4', caption: 'Lorem ipsum', fee: 10000, currency: 'IDR', description: 'Dolor sit amet....', speaker: 'John Doe', city: 'Jakarta', location: 'Address 4', date: '2016-01-01', time: '10:00:00', booking_code: undefined, paid: false }
   ];
 
   return {
@@ -27,28 +27,44 @@ angular.module('starter.services', [])
 
 .factory('VeritransService', function(VeritransEndpoint, $http) {
   return {
-    charge: function(seminar, success_callback, error_callback) {
+    token: function(card, callback) {
+      Veritrans.url = VeritransEndpoint.url + '/v2/token';
+
+      Veritrans.client_key = VeritransEndpoint.client_key;
+
+      var card_detail = function() {
+        return {
+          "card_number": card.number,
+          "card_exp_month": card.exp_month,
+          "card_exp_year": card.exp_year,
+          "card_cvv": card.cvv,
+        }
+      };
+
+      Veritrans.token(card_detail, callback);
+    },
+
+    charge: function(seminar, token_id, success_callback, error_callback) {
       var data = {
-        "payment_type": "vtweb",
+        "payment_type": "credit_card",
         "transaction_details": {
           "order_id": String(new Date().getTime()),
           "gross_amount": seminar.fee,
           "currency": seminar.currency
         },
-        "vtweb": {
-          "enabled_payments": [ "credit_card", "mandiri_clickpay" ]
+        "credit_card": {
+          "token_id": token_id
         }
       }
 
       var config = {
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Basic NjJiMTVhN2QtZTVmOC00YjNjLTllYWItY2E4MjdjYTM3ZjU1Og=='
+          'Accept': 'application/json'
         }
       }
 
-      $http.post(VeritransEndpoint.url + '/v2/charge', data, config).then(function(resp) {
+      $http.post(VeritransEndpoint.charge_proxy_url + '/api/v1/charge', data, config).then(function(resp) {
         success_callback(resp);
       }, function(err) {
         error_callback(err);
