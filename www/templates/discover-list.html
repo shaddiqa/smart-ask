@@ -1,0 +1,14 @@
+<ion-view title="Discover List">
+  <ion-content class="has-header">
+    <ion-list>
+      <div ng-repeat="seminar in seminars">
+        <ion-item type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
+          <span>{{seminar.name}}</span>
+          <br/>
+          <p>{{seminar.caption}}</p>
+          <p>{{seminar.categories}}</p>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

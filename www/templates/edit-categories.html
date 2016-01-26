@@ -1,0 +1,13 @@
+<ion-view title="Choose Categories">
+  <ion-content class="has-header">
+    <div ng-repeat="category in categories">
+      <ion-checkbox ng-model="category.selected" ng-checked="category.selected" class="checkbox-assertive">{{category.name}}</ion-checkbox>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="select()">
+        <span ng-show="!loading">Select</span>
+        <i ng-show="loading" class="ion-loading-b"></i>
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

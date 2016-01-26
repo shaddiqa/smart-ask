@@ -1,0 +1,11 @@
+<ion-view title="Discover">
+  <ion-content class="has-header">
+    <ion-list>
+      <div ng-repeat="category in categories">
+        <ion-item href="#/tab/discover/{{category}}">
+          {{ category }}
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

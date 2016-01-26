@@ -13,6 +13,10 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
   charge_proxy_url: 'https://smart-ask-server.herokuapp.com'
 })
 
+.constant('SeminarConstants', {
+  available_seminar_categories: ['technology', 'agriculture', 'politic', 'art', 'medical']
+})
+
 .run(function($ionicPlatform, user) {
   // Initiate the user service with your UserApp App Id
   // https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
@@ -52,6 +56,12 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
       }
     })
 
+    .state('edit-categories', {
+      url: '/categories/edit',
+      templateUrl: 'templates/edit-categories.html',
+      controller: 'EditCategoryCtrl'
+    })
+
     // setup an abstract state for the tabs directive
     .state('tab', {
       url: "/tab",
@@ -80,6 +90,7 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
         }
       }
     })
+
     .state('tab.seminar-detail', {
       url: '/seminar/:seminarId',
       views: {
@@ -96,6 +107,26 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
         'tab-seminars': {
           templateUrl: 'templates/payment.html',
           controller: 'PaymentCtrl'
+        }
+      }
+    })
+
+    .state('tab.discovers', {
+      url: '/discovers',
+      views: {
+        'tab-discovers': {
+          templateUrl: 'templates/tab-discovers.html',
+          controller: 'DiscoversCtrl'
+        }
+      }
+    })
+
+    .state('tab.discover-list', {
+      url: '/discover/:category',
+      views: {
+        'tab-discovers': {
+          templateUrl: 'templates/discover-list.html',
+          controller: 'DiscoverListCtrl'
         }
       }
     })

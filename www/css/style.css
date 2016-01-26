@@ -1,3 +1,8 @@
 a {
   text-decoration: none
 }
+
+.logo-center {
+  margin: 0 auto;
+  width: 280px
+}

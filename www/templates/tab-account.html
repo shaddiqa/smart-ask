@@ -3,22 +3,30 @@
     <h1>Account</h1>
 
     <div class="card">
-	  <div class="item item-text-wrap">
-	   	First Name: {{ user.first_name }}
-	  </div>
-	</div>
+  	  <div class="item item-text-wrap">
+  	   	First Name: {{ user.first_name }}
+  	  </div>
+  	</div>
 
-	<div class="card">
-	  <div class="item item-text-wrap">
-	   	Login: {{ user.login }}
-	  </div>
-	</div>
+  	<div class="card">
+  	  <div class="item item-text-wrap">
+  	   	Login: {{ user.login }}
+  	  </div>
+  	</div>
 
     <div class="card">
-	  <div class="item item-text-wrap">
-	   	Email: {{ user.email }}
-	  </div>
-	</div>
+  	  <div class="item item-text-wrap">
+  	   	Email: {{ user.email }}
+  	  </div>
+  	</div>
+
+    <div class="card">
+      <a href="#/categories/edit">
+  	     <div class="item item-text-wrap">
+  	   	    Categories: {{ selected_categories }}
+  	   </div>
+      </a>
+  	</div>
 
     <a class="button button-block button-positive" ua-logout>
 		<span ng-show="!loading">Log Out</span>

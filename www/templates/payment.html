@@ -3,7 +3,7 @@
     <div class="list list-inset">
       <label class="item item-input">
         <span class="input-label">Card Number</span>
-        <input type="text" placeholder="4811111111111114" ng-model="card.number">
+        <input type="text" ng-model="default.card.number" ng-model="card.number">
       </label>
       <label class="item item-input">
         <span class="input-label">Card Expiry Month</span>
@@ -12,11 +12,11 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Card Expiry Year</span>
-        <input type="text" placeholder="2099" ng-model="card.exp_year">
+        <input type="text" ng-model="default.card.exp_year" ng-model="card.exp_year">
       </label>
       <label class="item item-input">
         <span class="input-label">CVV</span>
-        <input type="password" placeholder="123" ng-model="card.cvv">
+        <input type="password" ng-model="default.card.cvv" ng-model="card.cvv">
       </label>
     </div>
     <div class="padding">
