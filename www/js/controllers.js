@@ -74,15 +74,11 @@ angular.module('starter.controllers', [])
   $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   $scope.seminar = Seminars.get($stateParams.seminarId);
 
-  $scope.default = {
-    card: {
-      number: "4811111111111114",
-      exp_year: "2099",
-      cvv: "123"
-    }
+  $scope.card = {
+    number: "4811111111111114",
+    exp_year: "2099",
+    cvv: "123"
   };
-
-  $scope.card = {};
 
   $scope.pay = function() {
     var card = {

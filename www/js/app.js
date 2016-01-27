@@ -9,7 +9,7 @@ angular.module('starter', ['ionic', 'UserApp', 'starter.controllers', 'starter.s
 
 .constant('VeritransEndpoint', {
   url: 'https://api.sandbox.veritrans.co.id',
-  client_key: '156814b4-bf20-4e2b-8b87-073112fafb9a',
+  client_key: 'VT-client-KmoNBAviU22ahVeb',
   charge_proxy_url: 'https://smart-ask-server.herokuapp.com'
 })
 
