@@ -1,7 +1,11 @@
 <ion-view title="Discover">
   <ion-content class="has-header">
+    <label class="item item-input item-floating-label">
+      <i class="icon ion-ios-search-strong"></i>
+      <input type="text" placeholder="Seminar category" ng-model="search">
+    </label>
     <ion-list>
-      <div ng-repeat="category in categories">
+      <div ng-repeat="category in categories | filter:search">
         <ion-item href="#/tab/discover/{{category}}">
           {{ category }}
         </ion-item>

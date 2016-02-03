@@ -1,10 +1,14 @@
 <ion-view title="Seminars">
   <ion-content class="has-header">
+    <label class="item item-input item-floating-label">
+      <i class="icon ion-ios-search-strong"></i>
+      <input type="text" placeholder="Seminar name" ng-model="search">
+    </label>
     <ion-list>
       <div class="item item-divider">
         Available Seminars
       </div>
-      <div ng-repeat="seminar in seminars">
+      <div ng-repeat="seminar in seminars | filter:search">
         <div ng-if="!seminar.paid">
           <ion-item type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
             <span>{{seminar.name}}</span>
@@ -17,7 +21,7 @@
       <div class="item item-divider">
         Booked Seminars
       </div>
-      <div ng-repeat="seminar in seminars">
+      <div ng-repeat="seminar in seminars | filter:search">
         <div ng-if="seminar.paid">
           <ion-item type="item-text-wrap" href="#/tab/seminar/{{seminar.id}}">
             <span>{{seminar.name}}</span>
